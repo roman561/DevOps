@@ -1,5 +1,5 @@
 provider "aws" { 
-  region = "us-east-1" # Change this to your desired region 
+  region = "ua-east-1"  
 } 
  
 # First EC2 instance with Prometheus stack, Node-exporter and Cadvisor-exporter installed 
