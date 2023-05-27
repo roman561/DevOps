@@ -1,0 +1,15 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Construct Docker Image') {
+            steps {
+                script {
+                    dir("lab1") {
+                        sh 'docker build --no-cache -t lab1-build .'
+                    }
+                }
+            }
+        }
+    }
+}
