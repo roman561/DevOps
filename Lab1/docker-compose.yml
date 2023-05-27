@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  webserver:
+    image: nginx:latest
+    ports:
+      - "8050:80"
+
+  response-checker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: response-checker
