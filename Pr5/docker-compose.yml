@@ -1,0 +1,25 @@
+version: '3.5'
+services:
+  # nginx:
+  #   image: nginx:1.21.6
+  #   ports:
+  #       - "80:80"
+  #       - "443:443"
+  #   volumes:
+  #       - ./hosts:/etc/nginx/conf.d
+  #       - ./logs/nginx:/var/log/nginx
+        
+  jenkins:
+    image: "jenkins/jenkins:lts"
+    privileged: true
+    user: root
+    ports: 
+      - "8080:8080"
+      - "50000:50000"
+    dns:
+      - 8.8.8.8
+    volumes:
+      - "./jenkins:/var/jenkins_home"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "/etc/resolv.conf:/etc/resolv.conf"
+      - "/usr/bin/docker:/usr/bin/docker"

@@ -1,0 +1,41 @@
+#!/usr/bin/env groovy
+pipeline {
+  agent any
+  stages {
+    stage("Build") {
+      steps {
+        sh 'echo "It is build project!"'
+      }
+    }
+
+    stage("Testing") {
+      parallel {
+        stage("Unit Tests") {
+          agent { 
+              docker { image 'openjdk:7-jdk-alpine' }
+            }
+          steps {
+            sh 'java -version'
+          }
+        }
+        stage("Functional Tests") {
+          agent { docker { image 'openjdk:8-jdk-alpine' }}
+          steps {
+            sh 'java -version'
+          }
+        }
+        stage("Integration Tests") {
+          steps {
+            sh 'java -version'
+          }
+        }
+      }
+    }
+
+    stage("Deploy") {
+      steps {
+        echo "Deploy!"
+      }
+    }
+  }
+}
